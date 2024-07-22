@@ -48,6 +48,6 @@ runs:
         push: true
         tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
         build-args: |
-          MODEL_ID=${{ inputs.model_name }}
+          MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
