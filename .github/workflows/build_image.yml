@@ -1,0 +1,45 @@
+name: 'Example workflow for dockerize-ollama-models-action'
+
+on:
+  workflow_dispatch:
+    inputs:
+      model_name:
+        description: 'Model name'
+        required: true
+        default: 'qwen2'
+      model_tag:
+        description: 'Model tag'
+        required: true
+        default: '0.5b'
+      docker_repository:
+        description: 'DockerHub repository name'
+        required: true
+        default: 'ilopezluna/ollama-qwen2'
+      docker_tag:
+        description: 'Docker image tag'
+        required: true
+        default: '0.2.7-0.5b'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          large-packages: false
+          docker-images: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and Deploy Docker Image
+        uses: ./.github/actions/dockerize-ollama-models-action
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
+          docker_repository: ${{ github.event.inputs.docker_repository }}
+          docker_tag: ${{ github.event.inputs.docker_tag }}
+          model_name: ${{ github.event.inputs.model_name }}
+          model_tag: ${{ github.event.inputs.model_tag }}
