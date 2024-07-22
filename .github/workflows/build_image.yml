@@ -14,7 +14,7 @@ on:
       docker_repository:
         description: 'DockerHub repository name'
         required: true
-        default: 'ilopezluna/ollama-qwen2'
+        default: 'ollama-qwen2'
       docker_tag:
         description: 'Docker image tag'
         required: true
