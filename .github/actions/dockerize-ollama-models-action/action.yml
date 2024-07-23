@@ -23,7 +23,7 @@ inputs:
   ollama_version:
     description: 'Ollama version (optional)'
     required: false
-    default: '0.2.7'
+    default: 'latest'
 
 runs:
   using: 'composite'
