@@ -52,12 +52,6 @@ runs:
         username: ${{ inputs.docker_username }}
         password: ${{ inputs.docker_password }}
 
-    - name: Docker meta
-      id: meta
-      uses: docker/metadata-action@v5
-      with:
-        images: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
-
     - name: Build and push by digest
       id: build
       uses: docker/build-push-action@v6
