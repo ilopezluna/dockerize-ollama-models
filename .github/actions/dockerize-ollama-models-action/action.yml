@@ -1,6 +1,9 @@
 name: 'Build and push Docker image with a model running in Ollama'
 description: 'Automates the process of building an pushing a Docker image that includes a specified model running in Ollama'
 inputs:
+  platform:
+    description: 'Platform'
+    required: true
   docker_username:
     description: 'DockerHub username'
     required: true
@@ -55,7 +58,7 @@ runs:
       with:
         context: ${{ github.workspace }}
         file: Dockerfile
-        platforms: linux/amd64,linux/arm64
+        platforms: ${{ inputs.platform }}
         push: true
         tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
         build-args: |
