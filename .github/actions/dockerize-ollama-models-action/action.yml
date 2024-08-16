@@ -64,7 +64,7 @@ runs:
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
-        outputs: type=image,name=${{ steps.meta.outputs.labels }},push-by-digest=true,name-canonical=true,push=true
+        outputs: type=image,name=${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }},push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       shell: bash
