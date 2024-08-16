@@ -18,10 +18,10 @@ on:
       docker_tag:
         description: 'Docker image tag'
         required: true
-        default: '0.2.7-0.5b'
+        default: '0.3.6-0.5b'
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -40,7 +40,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build and Deploy Docker Image
+      - name: Dockerize Ollama Model
         uses: ./.github/actions/dockerize-ollama-models-action
         with:
           platform: ${{ matrix.platform }}
@@ -50,3 +50,16 @@ jobs:
           docker_tag: ${{ github.event.inputs.docker_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
+
+  merge:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run merge action
+        uses: ./.github/actions/merge-action
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
