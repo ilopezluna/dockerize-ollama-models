@@ -38,8 +38,10 @@ runs:
       uses: docker/setup-buildx-action@v3
 
     - name: Docker info
+      shell: bash
       run: docker info
     - name: Buildx inspect
+      shell: bash
       run: docker buildx inspect
 
     - name: Log in to DockerHub
