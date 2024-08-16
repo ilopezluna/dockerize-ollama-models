@@ -53,6 +53,7 @@ runs:
         file: Dockerfile
         platforms: ${{ inputs.platform }}
         push: true
+        tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
         build-args: |
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
