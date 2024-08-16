@@ -38,7 +38,6 @@ runs:
       uses: docker/setup-qemu-action@v3
 
     - name: Set up Docker Buildx
-      id: buildx
       uses: docker/setup-buildx-action@v3
 
     - name: Log in to DockerHub
@@ -58,7 +57,7 @@ runs:
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
-        outputs: type=image,name=${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }},push-by-digest=true,name-canonical=true,push=true
+        outputs: type=image,push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       shell: bash
