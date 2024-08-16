@@ -31,6 +31,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Prepare
+      shell: bash
+      run: |
+        platform=${{ inputs.platform }}
+        echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+
     - name: Checkout repository
       uses: actions/checkout@v4
 
@@ -46,19 +52,25 @@ runs:
         username: ${{ inputs.docker_username }}
         password: ${{ inputs.docker_password }}
 
-    - name: Build and push Docker image
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
+
+    - name: Build and push by digest
+      id: build
       uses: docker/build-push-action@v6
       with:
         context: ${{ github.workspace }}
         file: Dockerfile
         platforms: ${{ inputs.platform }}
-        push: true
-        tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
+        labels: ${{ steps.meta.outputs.labels }}
         build-args: |
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
-        outputs: type=image,push-by-digest=true,name-canonical=true,push=true
+        outputs: type=image,name=${{ steps.meta.outputs.labels }},push-by-digest=true,name-canonical=true,push=true
 
     - name: Export digest
       shell: bash
