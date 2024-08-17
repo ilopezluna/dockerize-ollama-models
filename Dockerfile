@@ -11,7 +11,7 @@ ARG MODEL_TAG
 WORKDIR /model
 
 # Start the ollama serve service
-RUN ollama serve & \
+RUN ollama serve || true & \
     # Wait for the service to be ready
     until curl -s http://localhost:11434; do \
         echo "Waiting for ollama serve to be ready..."; \
