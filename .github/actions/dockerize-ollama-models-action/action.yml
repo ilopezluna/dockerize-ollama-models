@@ -1,9 +1,6 @@
 name: 'Build and push Docker image with a model running in Ollama'
 description: 'Automates the process of building an pushing a Docker image that includes a specified model running in Ollama'
 inputs:
-  platform:
-    description: 'Platform'
-    required: true
   docker_username:
     description: 'DockerHub username'
     required: true
@@ -37,11 +34,6 @@ runs:
     - name: Docker meta
       id: meta
       uses: docker/metadata-action@v5
-      with:
-        images: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
-
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -52,31 +44,14 @@ runs:
         username: ${{ inputs.docker_username }}
         password: ${{ inputs.docker_password }}
 
-    - name: Build and push by digest
-      id: build
+    - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
         context: ${{ github.workspace }}
         file: Dockerfile
-        platforms: ${{ inputs.platform }}
-        labels: ${{ steps.meta.outputs.labels }}
+        push: true
+        tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
         build-args: |
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
-        outputs: type=image,push-by-digest=true,name-canonical=true,push=true
-
-    - name: Export digest
-      shell: bash
-      run: |
-        mkdir -p /tmp/digests
-        digest="${{ steps.build.outputs.digest }}"
-        touch "/tmp/digests/${digest#sha256:}"
-
-    - name: Upload digest
-      uses: actions/upload-artifact@v4
-      with:
-        name: digests-${{ env.PLATFORM_PAIR }}
-        path: /tmp/digests/*
-        if-no-files-found: error
-        retention-days: 1
