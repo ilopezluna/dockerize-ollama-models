@@ -15,10 +15,9 @@ on:
         description: 'DockerHub repository name'
         required: true
         default: 'ollama-qwen2'
-      docker_tag:
-        description: 'Docker image tag'
+      ollama_version:
+        description: 'Ollama version'
         required: true
-        default: '0.3.6-0.5b'
 
 jobs:
   build:
@@ -35,11 +34,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and Deploy Docker Image
-        uses: ./.github/actions/dockerize-ollama-models-action
+        uses: ilopezluna/dockerize-ollama-models@773965899379c6383374f222a862a03e762a0360
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
           docker_repository: ${{ github.event.inputs.docker_repository }}
-          docker_tag: ${{ github.event.inputs.docker_tag }}
+          docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
+          ollama_version: ${{ github.event.inputs.ollama_version }}
