@@ -17,7 +17,7 @@ on:
         default: 'ollama-qwen2'
       ollama_version:
         description: 'Ollama version'
-        required: true
+        required: false
 
 jobs:
   build:
