@@ -28,10 +28,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: ${{tojson(inputs)}}
-      shell: cat {0}
-    - run: ${{tojson(github.event.inputs)}}
-      shell: cat {0}
     - name: Checkout repository
       uses: actions/checkout@v4
 
