@@ -10,7 +10,7 @@ This GitHub Action automates the process of building and pushing a Docker image 
 - `docker_tag`: **Required**. The tag to use for the pushed Docker image.
 - `model_name`: **Required**. The name of the model to be included in the Docker image.
 - `model_tag`: The tag of the model. Defaults to `latest`.
-- `ollama_version`: The version of Ollama to use. Defaults to `0.3.6`.
+- `ollama_version`: The version of Ollama to use. Defaults to `latest`.
 
 ## Usage
 
@@ -18,7 +18,7 @@ To use this action in your workflow, add the following step:
 
 ```yaml
 - name: Build and Deploy Docker Image
-  uses: ./.github/actions/dockerize-ollama-models-action
+  uses: ilopezluna/dockerize-ollama-models@773965899379c6383374f222a862a03e762a0360
   with:
     docker_username: ${{ secrets.DOCKER_USERNAME }}
     docker_password: ${{ secrets.DOCKER_PASSWORD }}
