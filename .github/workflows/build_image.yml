@@ -15,10 +15,10 @@ on:
         description: 'DockerHub repository name'
         required: true
         default: 'ollama-qwen2'
-      ollama_version:
-        description: 'Ollama version'
-        required: false
-        default: '0.3.8'
+      docker_tag:
+        description: 'Docker image tag'
+        required: true
+        default: '0.3.6-0.5b'
 
 jobs:
   build:
@@ -40,6 +40,6 @@ jobs:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
           docker_repository: ${{ github.event.inputs.docker_repository }}
-          docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
+          docker_tag: ${{ github.event.inputs.docker_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
