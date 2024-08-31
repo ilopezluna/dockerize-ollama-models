@@ -43,4 +43,3 @@ jobs:
           docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
-          ollama_version: ${{ github.event.inputs.ollama_version }}
