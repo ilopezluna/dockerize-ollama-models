@@ -14,6 +14,8 @@ jobs:
       matrix:
         models: [
           model: { name: 'qwen2', tag: '0.5b' },
+          model: { name: 'all-minilm', tag: '22M' },
+          model: { name: 'nomic-embed-text', tag: 'v1.5' },
         ]
     steps:
       - name: Free Disk Space
