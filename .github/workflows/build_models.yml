@@ -12,7 +12,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        model: [qwen2]
+        models: [
+          model: { name: 'all-minilm', tag: '22m' },
+          model: { name: 'bge-m3', tag: '567m' },
+          model: { name: 'codegemma', tag: '7b' },
+          model: { name: 'deepseek-coder', tag: '1.3b' },
+          model: { name: 'llama3.1', tag: '8b' },
+          model: { name: 'llava', tag: '7b' },
+          model: { name: 'llava-phi3', tag: '3.8b' },
+          model: { name: 'mistral', tag: '7b' },
+          model: { name: 'moondream', tag: '1.8b' },
+          model: { name: 'mxbai-embed-large', tag: '335m' },
+          model: { name: 'nomic-embed-text', tag: 'v1.5' },
+          model: { name: 'phi3', tag: '3.8b' },
+          model: { name: 'snowflake-arctic-embed', tag: '335m' },
+          model: { name: 'starcoder2', tag: '3b' },
+        ]
     steps:
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
@@ -28,8 +43,8 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ollama-${{ matrix.model }}
-          docker_tag: ${{ github.event.inputs.ollama_version }}-latest
-          model_name: ${{ matrix.model }}
-          model_tag: latest
+          docker_repository: ${{ matrix.models.model.name }}
+          docker_tag: ${{ github.event.inputs.ollama_version }}-${{ matrix.models.model.tag }}
+          model_name: ${{ matrix.models.model.name }}
+          model_tag: ${{ matrix.models.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
