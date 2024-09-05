@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        model: [qwen2]
+        models: [
+          model: { name: 'qwen2', tag: '0.5b' },
+        ]
     steps:
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
@@ -28,8 +30,8 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ollama-qwen2
+          docker_repository: ${{ matrix.model.name }}
           docker_tag: ${{ github.event.inputs.ollama_version }}-latest
-          model_name: ${{ matrix.model }}
-          model_tag: latest
+          model_name: ${{ matrix.model.name }}
+          model_tag: ${{ matrix.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
