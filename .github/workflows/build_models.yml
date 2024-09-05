@@ -1,0 +1,35 @@
+name: 'Build Ollama models'
+
+on:
+  workflow_dispatch:
+    inputs:
+      ollama_version:
+        description: 'Ollama version'
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        model: [qwen2]
+    steps:
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          large-packages: false
+          docker-images: false
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build and Deploy Docker Image
+        uses: ilopezluna/dockerize-ollama-models@v1.0.0
+        with:
+          docker_username: ${{ secrets.DOCKER_USERNAME }}
+          docker_password: ${{ secrets.DOCKER_PASSWORD }}
+          docker_repository: ollama-${{ matrix.model }}
+          docker_tag: ${{ github.event.inputs.ollama_version }}-latest
+          model_name: ${{ matrix.model }}
+          model_tag: latest
+          ollama_version: ${{ github.event.inputs.ollama_version }}
