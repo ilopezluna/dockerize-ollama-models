@@ -31,7 +31,7 @@ jobs:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
           docker_repository: ${{ matrix.models.model.name }}
-          docker_tag: ${{ github.event.inputs.ollama_version }}-latest
+          docker_tag: ${{ github.event.inputs.ollama_version }}-${{ matrix.models.model.tag }}
           model_name: ${{ matrix.models.model.name }}
           model_tag: ${{ matrix.models.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
