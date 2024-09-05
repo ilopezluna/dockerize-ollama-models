@@ -28,8 +28,8 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ollama-${{ matrix.model }}
+          docker_repository: ollama-qwen2
           docker_tag: ${{ github.event.inputs.ollama_version }}-latest
-          model_name: ${{ matrix.model }}
+          model_name: qwen2
           model_tag: latest
           ollama_version: ${{ github.event.inputs.ollama_version }}
