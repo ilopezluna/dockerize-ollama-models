@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and Deploy Docker Image
-        uses: ilopezluna/dockerize-ollama-models@v1.0.0
+        uses: ./
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
