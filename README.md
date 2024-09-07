@@ -18,7 +18,7 @@ To use this action in your workflow, add the following step:
 
 ```yaml
 - name: Build and Deploy Docker Image
-  uses: ilopezluna/dockerize-ollama-models@v1.0.0
+  uses: ilopezluna/dockerize-ollama-models@v1.0.1
   with:
     docker_username: ${{ secrets.DOCKER_USERNAME }}
     docker_password: ${{ secrets.DOCKER_PASSWORD }}
