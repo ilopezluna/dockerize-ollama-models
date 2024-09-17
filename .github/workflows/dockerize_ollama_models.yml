@@ -1,4 +1,4 @@
-name: 'Build Ollama models'
+name: 'Dockerize Ollama models'
 
 on:
   workflow_dispatch:
