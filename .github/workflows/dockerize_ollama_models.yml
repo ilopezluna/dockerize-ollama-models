@@ -13,19 +13,7 @@ jobs:
     strategy:
       matrix:
         models: [
-          model: { name: 'all-minilm', tag: '22m' },
-          model: { name: 'bge-m3', tag: '567m' },
-          model: { name: 'deepseek-coder', tag: '1.3b' },
-          model: { name: 'llama3.1', tag: '8b' },
-          model: { name: 'llava', tag: '7b' },
-          model: { name: 'llava-phi3', tag: '3.8b' },
-          model: { name: 'mistral', tag: '7b' },
-          model: { name: 'moondream', tag: '1.8b' },
-          model: { name: 'mxbai-embed-large', tag: '335m' },
-          model: { name: 'nomic-embed-text', tag: 'v1.5' },
-          model: { name: 'phi3', tag: '3.8b' },
-          model: { name: 'snowflake-arctic-embed', tag: '335m' },
-          model: { name: 'starcoder2', tag: '3b' },
+          model: { name: 'all-minilm', tag: '22m' }
         ]
     steps:
       - name: Free Disk Space
@@ -47,3 +35,9 @@ jobs:
           model_name: ${{ matrix.models.model.name }}
           model_tag: ${{ matrix.models.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
+
+      - name: List Docker Images
+        run: echo "Listing Docker Images" && docker images
+
+      - name: Remove Docker Image
+        run: docker rmi ${{ matrix.models.model.name }}:${{ github.event.inputs.ollama_version }}-${{ matrix.models.model.tag }}
