@@ -47,6 +47,3 @@ jobs:
           model_name: ${{ matrix.models.model.name }}
           model_tag: ${{ matrix.models.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
-
-      - name: List Docker Images
-        run: echo "Listing Docker Images" && docker images
