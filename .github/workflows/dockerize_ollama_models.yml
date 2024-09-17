@@ -50,6 +50,3 @@ jobs:
 
       - name: List Docker Images
         run: echo "Listing Docker Images" && docker images
-
-      - name: Remove Docker Image
-        run: docker rmi ${{ matrix.models.model.name }}:${{ github.event.inputs.ollama_version }}-${{ matrix.models.model.tag }}
