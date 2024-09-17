@@ -13,14 +13,26 @@ jobs:
     strategy:
       matrix:
         models: [
-          model: { name: 'all-minilm', tag: '22m' }
+          model: { name: 'all-minilm', tag: '22m' },
+          model: { name: 'bge-m3', tag: '567m' },
+          model: { name: 'codegemma', tag: '7b' },
+          model: { name: 'deepseek-coder', tag: '1.3b' },
+          model: { name: 'llama3.1', tag: '8b' },
+          model: { name: 'llava', tag: '7b' },
+          model: { name: 'llava-phi3', tag: '3.8b' },
+          model: { name: 'mistral', tag: '7b' },
+          model: { name: 'moondream', tag: '1.8b' },
+          model: { name: 'mxbai-embed-large', tag: '335m' },
+          model: { name: 'nomic-embed-text', tag: 'v1.5' },
+          model: { name: 'phi3', tag: '3.8b' },
+          model: { name: 'snowflake-arctic-embed', tag: '335m' },
+          model: { name: 'starcoder2', tag: '3b' },
         ]
     steps:
       - name: Free Disk Space
         uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
         with:
-          large-packages: false
-          docker-images: false
+          tool-cache: true
 
       - name: Checkout repository
         uses: actions/checkout@v4
