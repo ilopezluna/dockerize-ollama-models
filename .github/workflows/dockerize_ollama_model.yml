@@ -14,7 +14,7 @@ on:
       docker_repository:
         description: 'DockerHub repository name'
         required: true
-        default: 'ollama-qwen2'
+        default: 'qwen2'
       ollama_version:
         description: 'Ollama version'
         required: true

@@ -17,6 +17,7 @@ jobs:
           model: { name: 'bge-m3', tag: '567m' },
           model: { name: 'codegemma', tag: '7b' },
           model: { name: 'deepseek-coder', tag: '1.3b' },
+          model: { name: 'gemma2', tag: '2b' },
           model: { name: 'llama3.1', tag: '8b' },
           model: { name: 'llava', tag: '7b' },
           model: { name: 'llava-phi3', tag: '3.8b' },
@@ -25,6 +26,7 @@ jobs:
           model: { name: 'mxbai-embed-large', tag: '335m' },
           model: { name: 'nomic-embed-text', tag: 'v1.5' },
           model: { name: 'phi3', tag: '3.8b' },
+          model: { name: 'qwen2', tag: '0.5b' },
           model: { name: 'snowflake-arctic-embed', tag: '335m' },
           model: { name: 'starcoder2', tag: '3b' },
         ]
