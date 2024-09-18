@@ -70,7 +70,7 @@ runs:
       if: "${{ github.event.inputs.short_description != '' }}"
       uses: peter-evans/dockerhub-description@v4
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        username: ${{ secrets.docker_username }}
+        password: ${{ secrets.docker_password }}
         repository: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}
         short-description: ${{ github.event.repository.description }}
