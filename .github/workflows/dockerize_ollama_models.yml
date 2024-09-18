@@ -90,7 +90,7 @@ jobs:
           },
           model: {
             name: 'qwen2.5',
-            tag: '0.5b',
+            tag: '0.5b-instruct',
             description: 'Qwen2.5 models are pretrained on Alibaba latest large-scale dataset, encompassing up to 18 trillion tokens. The model supports up to 128K tokens and has multilingual support'
           },
           model: {
