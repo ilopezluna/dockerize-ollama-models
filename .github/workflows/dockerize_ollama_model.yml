@@ -18,6 +18,9 @@ on:
       ollama_version:
         description: 'Ollama version'
         required: true
+      description:
+        description: 'Short description'
+        required: false
 
 jobs:
   build:
@@ -43,3 +46,4 @@ jobs:
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
+          short_description: ${{ github.event.inputs.description }}

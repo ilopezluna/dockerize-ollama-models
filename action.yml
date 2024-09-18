@@ -67,7 +67,7 @@ runs:
           OLLAMA_VERSION=${{ inputs.ollama_version }}
 
     - name: Docker Hub Description
-      if: "${{ github.event.inputs.short_description != '' }}"
+      if: ${{ github.event.inputs.short_description != '' }}
       uses: peter-evans/dockerhub-description@v4
       with:
         username: ${{ inputs.docker_username }}
