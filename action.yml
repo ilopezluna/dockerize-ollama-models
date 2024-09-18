@@ -24,6 +24,10 @@ inputs:
     description: 'Ollama version (optional)'
     required: false
     default: 'latest'
+  short_description:
+    description: 'Docker Hub repository short description'
+    required: false
+    default: ''
 
 runs:
   using: 'composite'
@@ -61,3 +65,12 @@ runs:
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
+
+    - name: Docker Hub Description
+      if: "${{ github.event.inputs.short_description != '' }}"
+      uses: peter-evans/dockerhub-description@v4
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}
+        short-description: ${{ github.event.repository.description }}
