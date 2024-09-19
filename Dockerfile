@@ -1,4 +1,4 @@
-ARG OLLAMA_VERSION
+ARG OLLAMA_VERSION=latest
 FROM ollama/ollama:${OLLAMA_VERSION} AS ollama
 
 FROM ollama AS base
