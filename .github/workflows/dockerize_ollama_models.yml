@@ -6,6 +6,7 @@ on:
       ollama_version:
         description: 'Ollama version'
         required: true
+        default: 'latest'
 
 jobs:
   build:

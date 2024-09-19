@@ -73,4 +73,4 @@ runs:
         username: ${{ inputs.docker_username }}
         password: ${{ inputs.docker_password }}
         repository: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}
-        short-description: ${{ github.event.repository.description }}
+        short-description: ${{ github.event.repository.short_description }}

@@ -18,6 +18,7 @@ on:
       ollama_version:
         description: 'Ollama version'
         required: true
+        default: 'latest'
       description:
         description: 'Short description'
         required: false
