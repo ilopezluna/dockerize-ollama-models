@@ -6,6 +6,7 @@ on:
       ollama_version:
         description: 'Ollama version'
         required: true
+        default: 'latest'
 
 jobs:
   build:
@@ -13,22 +14,106 @@ jobs:
     strategy:
       matrix:
         models: [
-          model: { name: 'all-minilm', tag: '22m' },
-          model: { name: 'bge-m3', tag: '567m' },
-          model: { name: 'codegemma', tag: '7b' },
-          model: { name: 'deepseek-coder', tag: '1.3b' },
-          model: { name: 'gemma2', tag: '2b' },
-          model: { name: 'llama3.1', tag: '8b' },
-          model: { name: 'llava', tag: '7b' },
-          model: { name: 'llava-phi3', tag: '3.8b' },
-          model: { name: 'mistral', tag: '7b' },
-          model: { name: 'moondream', tag: '1.8b' },
-          model: { name: 'mxbai-embed-large', tag: '335m' },
-          model: { name: 'nomic-embed-text', tag: 'v1.5' },
-          model: { name: 'phi3', tag: '3.8b' },
-          model: { name: 'qwen2', tag: '0.5b' },
-          model: { name: 'snowflake-arctic-embed', tag: '335m' },
-          model: { name: 'starcoder2', tag: '3b' },
+          model: {
+            name: 'all-minilm',
+            tag: '22m',
+            description: 'Embedding models on very large sentence level datasets'
+          },
+          model: {
+            name: 'bge-m3',
+            tag: '567m',
+            description: 'BGE-M3 is a new model from BAAI distinguished for its versatility in Multi-Functionality, Multi-Linguality, and Multi-Granularity'
+          },
+          model: {
+            name: 'codegemma',
+            tag: '7b',
+            description: 'CodeGemma is a collection of powerful, lightweight models that can perform a variety of coding tasks like fill-in-the-middle code completion, code generation, natural language understanding, mathematical reasoning, and instruction following'
+          },
+          model: {
+            name: 'deepseek-coder',
+            tag: '1.3b',
+            description: 'DeepSeek Coder is a capable coding model trained on two trillion code and natural language tokens'
+          },
+          model: {
+            name: 'gemma2',
+            tag: '2b',
+            description: 'Google Gemma 2 is a high-performing and efficient model available in three sizes: 2B, 9B, and 27B'
+          },
+          model: {
+            name: 'llama3.1',
+            tag: '8b',
+            description: 'Llama 3.1 is a new state-of-the-art model from Meta available in 8B, 70B and 405B parameter sizes'
+          },
+          model: {
+            name: 'llava',
+            tag: '7b',
+            description: 'LLaVA is a novel end-to-end trained large multimodal model that combines a vision encoder and Vicuna for general-purpose visual and language understanding. Updated to version 1.6'
+          },
+          model: {
+            name: 'llava-phi3',
+            tag: '3.8b',
+            description: 'A new small LLaVA model fine-tuned from Phi 3 Mini'
+          },
+          model: {
+            name: 'mistral',
+            tag: '7b',
+            description: 'The 7B model released by Mistral AI, updated to version 0.3'
+          },
+          model: {
+            name: 'moondream',
+            tag: '1.8b',
+            description: 'moondream2 is a small vision language model designed to run efficiently on edge devices'
+          },
+          model: {
+            name: 'mxbai-embed-large',
+            tag: '335m',
+            description: 'State-of-the-art large embedding model from mixedbread.ai'
+          },
+          model: {
+            name: 'nomic-embed-text',
+            tag: 'v1.5',
+            description: 'A high-performing open embedding model with a large token context window'
+          },
+          model: {
+            name: 'phi3',
+            tag: '3.8b',
+            description: 'Phi-3 is a family of lightweight 3B (Mini) and 14B (Medium) state-of-the-art open models by Microsoft'
+          },
+          model: {
+            name: 'phi3.5',
+            tag: '3.8b',
+            description: 'A lightweight AI model with 3.8 billion parameters with performance overtaking similarly and larger sized models'
+          },
+          model: {
+            name: 'qwen2',
+            tag: '0.5b',
+            description: 'Qwen2 is a new series of large language models from Alibaba group'
+          },
+          model: {
+            name: 'qwen2.5',
+            tag: '0.5b-instruct',
+            description: 'Qwen2.5 models are pretrained on Alibaba latest large-scale dataset, encompassing up to 18 trillion tokens. The model supports up to 128K tokens and has multilingual support'
+          },
+          model: {
+            name: 'snowflake-arctic-embed',
+            tag: '335m',
+            description: 'A suite of text embedding models by Snowflake, optimized for performance'
+          },
+          model: {
+            name: 'starcoder2',
+            tag: '3b',
+            description: 'StarCoder2 is the next generation of transparently trained open code LLMs that comes in three sizes: 3B, 7B and 15B parameters'
+          },
+          model: {
+            name: 'reader-lm',
+            tag: '1.5b',
+            description: 'A series of models that convert HTML content to Markdown content, which is useful for content conversion tasks'
+          },
+          model: {
+            name: 'bespoke-minicheck',
+            tag: '7b',
+            description: 'A SOTA fact-checking model developed by Bespoke Labs'
+          }
         ]
     steps:
       - name: Free Disk Space
@@ -49,3 +134,4 @@ jobs:
           model_name: ${{ matrix.models.model.name }}
           model_tag: ${{ matrix.models.model.tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
+          short_description: ${{ matrix.models.model.description }}

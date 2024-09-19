@@ -6,18 +6,17 @@ on:
       model_name:
         description: 'Model name'
         required: true
-        default: 'qwen2'
+        default: 'all-minilm'
       model_tag:
         description: 'Model tag'
         required: true
-        default: '0.5b'
-      docker_repository:
-        description: 'DockerHub repository name'
-        required: true
-        default: 'qwen2'
+        default: '22m'
       ollama_version:
         description: 'Ollama version'
-        required: true
+        required: false
+      short_description:
+        description: 'Short description'
+        required: false
 
 jobs:
   build:
@@ -38,8 +37,9 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ${{ github.event.inputs.docker_repository }}
+          docker_repository: ${{ github.event.inputs.model_name }}
           docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
+          short_description: ${{ github.event.inputs.short_description }}
