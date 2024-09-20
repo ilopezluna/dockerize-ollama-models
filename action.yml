@@ -49,7 +49,7 @@ runs:
         buildkitd-flags: --oci-worker-net=bridge
         version: "lab:latest"
         driver: cloud
-        endpoint: "docker/default"
+        endpoint: "docker/probe-canary"
         install: true
 
     - name: Build and push Docker image
