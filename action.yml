@@ -48,7 +48,7 @@ runs:
       with:
         version: "lab:latest"
         driver: cloud
-        endpoint: "ilopezluna/ignasi"
+        endpoint: "docker/default"
         install: true
 
     - name: Build and push Docker image
