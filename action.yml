@@ -63,11 +63,3 @@ runs:
           MODEL_NAME=${{ inputs.model_name }}
           MODEL_TAG=${{ inputs.model_tag }}        
           OLLAMA_VERSION=${{ inputs.ollama_version }}
-
-    - name: Docker Hub Description
-      uses: peter-evans/dockerhub-description@v4
-      with:
-        username: ${{ inputs.docker_username }}
-        password: ${{ inputs.docker_password }}
-        repository: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}
-        short-description: ${{ inputs.short_description }}
