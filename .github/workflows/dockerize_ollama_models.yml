@@ -128,6 +128,26 @@ jobs:
             name: 'bespoke-minicheck',
             tag: '7b',
             description: 'A SOTA fact-checking model developed by Bespoke Labs'
+          },
+          model: {
+            name: 'nemotron-mini',
+            tag: '4b',
+            description: 'A commercial-friendly small language model by NVIDIA optimized for roleplay, RAG QA, and function calling'
+          },
+          model: {
+            name: 'smollm',
+            tag: '1.7b',
+            description: 'A family of small models with 135M, 360M, and 1.7B parameters, trained on a new high-quality dataset'
+          },
+          model: {
+            name: 'smollm',
+            tag: '360m',
+            description: 'A family of small models with 135M, 360M, and 1.7B parameters, trained on a new high-quality dataset'
+          },
+          model: {
+            name: 'smollm',
+            tag: '135m',
+            description: 'A family of small models with 135M, 360M, and 1.7B parameters, trained on a new high-quality dataset'
           }
         ]
     steps:
