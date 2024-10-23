@@ -37,7 +37,7 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ${{ github.event.inputs.model_name }}
+          docker_repository: ${{ github.event.inputs.model_name }}-uncompressed
           docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
           model_name: ${{ github.event.inputs.model_name }}
           model_tag: ${{ github.event.inputs.model_tag }}
