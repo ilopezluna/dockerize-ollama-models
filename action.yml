@@ -58,6 +58,7 @@ runs:
         file: Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
+        outputs: type=image,compression=uncompressed
         tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
         build-args: |
           MODEL_NAME=${{ inputs.model_name }}
