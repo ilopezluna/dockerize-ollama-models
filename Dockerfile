@@ -18,7 +18,9 @@ RUN ollama serve & \
         sleep 5; \
     done && \
     # Create the model
-    ollama pull ${MODEL_NAME}:${MODEL_TAG}
+    ollama pull ${MODEL_NAME}:${MODEL_TAG} && \
+    ollama pull bespoke-mini:7b && \
+    ollama pull all-minilm:22m
 
 FROM ollama
 COPY --from=builder /root/.ollama /root/.ollama
