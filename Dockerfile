@@ -19,7 +19,7 @@ RUN ollama serve & \
     done && \
     # Create the model
     ollama pull ${MODEL_NAME}:${MODEL_TAG} && \
-    ollama pull bespoke-mini:7b && \
+    ollama pull bespoke-minicheck:7b && \
     ollama pull all-minilm:22m
 
 FROM ollama
