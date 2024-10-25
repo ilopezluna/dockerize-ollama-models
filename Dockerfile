@@ -17,10 +17,10 @@ RUN ollama serve & \
         echo "Waiting for ollama serve to be ready..."; \
         sleep 5; \
     done && \
-    # Create the model
-    ollama pull ${MODEL_NAME}:${MODEL_TAG} && \
+    # Create the model \
+    ollama pull all-minilm:22m && \
     ollama pull bespoke-minicheck:7b && \
-    ollama pull all-minilm:22m
+    ollama pull ${MODEL_NAME}:${MODEL_TAG}
 
 FROM ollama
 COPY --from=builder /root/.ollama /root/.ollama
