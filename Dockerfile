@@ -20,7 +20,7 @@ RUN ollama serve & \
     # Create the model \
     ollama pull all-minilm:22m && \
     ollama pull bespoke-minicheck:7b && \
-    ollama pull ${MODEL_NAME}:${MODEL_TAG}
+    ollama pull llama3.2:1b
 
 FROM ollama
 COPY --from=builder /root/.ollama /root/.ollama

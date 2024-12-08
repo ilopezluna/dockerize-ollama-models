@@ -3,14 +3,6 @@ name: 'Dockerize Ollama model'
 on:
   workflow_dispatch:
     inputs:
-      model_name:
-        description: 'Model name'
-        required: true
-        default: 'all-minilm'
-      model_tag:
-        description: 'Model tag'
-        required: true
-        default: '22m'
       ollama_version:
         description: 'Ollama version'
         required: false
@@ -36,9 +28,7 @@ jobs:
         with:
           docker_username: ${{ secrets.DOCKER_USERNAME }}
           docker_password: ${{ secrets.DOCKER_PASSWORD }}
-          docker_repository: ${{ github.event.inputs.model_name }}
-          docker_tag: ${{ github.event.inputs.ollama_version }}-${{ github.event.inputs.model_tag }}
-          model_name: spring-ai-demo-models-${{ github.event.inputs.model_name }}
-          model_tag: ${{ github.event.inputs.model_tag }}
+          docker_repository: spring-ai-demo-models
+          docker_tag: ${{ github.event.inputs.ollama_version }}
           ollama_version: ${{ github.event.inputs.ollama_version }}
           short_description: ${{ github.event.inputs.short_description }}

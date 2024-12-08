@@ -13,13 +13,6 @@ inputs:
   docker_tag:
     description: 'DockerHub image tag'
     required: true
-  model_name:
-    description: 'model name'
-    required: true
-  model_tag:
-    description: 'model tag (optional)'
-    required: false
-    default: 'latest'
   ollama_version:
     description: 'Ollama version (optional)'
     required: false
@@ -59,9 +52,7 @@ runs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ inputs.docker_username }}/${{ inputs.docker_repository }}:${{ inputs.docker_tag }}
-        build-args: |
-          MODEL_NAME=${{ inputs.model_name }}
-          MODEL_TAG=${{ inputs.model_tag }}        
+        build-args: |      
           OLLAMA_VERSION=${{ inputs.ollama_version }}
 
     - name: Docker Hub Description
